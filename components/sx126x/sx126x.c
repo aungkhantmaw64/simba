@@ -29,7 +29,6 @@ void sx126x_set_packet_type(sx126x_packet_type_t type) {
 }
 
 void sx126x_set_rf_frequency(uint32_t freq_hz) {
-  uint8_t buffer[4] = {0};
   uint32_t Freq = (uint32_t)(freq_hz / SX126X_FREQ_STEP);
   uint8_t cmd[5] = {
       [0] = SX126X_CMD_OPCODE_SET_RF_FREQUENCY,

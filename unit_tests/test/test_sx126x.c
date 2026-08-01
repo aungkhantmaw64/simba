@@ -27,6 +27,8 @@ static sx126x_cmd_status_t capture_write_command(uint8_t* cmd, size_t cmd_size,
 }
 
 void setUp(void) {
+  RESET_FAKE(sx126x_write_command);
+
   sx126x_write_command_fake.custom_fake = capture_write_command;
 }
 

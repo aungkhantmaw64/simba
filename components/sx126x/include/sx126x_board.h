@@ -4,7 +4,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "hal_spi.h"
 #include "sx126x.h"
+
+typedef struct sx126x_board_config {
+  uint8_t busy_io_num;
+  hal_spi_handle_t spi;
+} sx126x_board_config_t;
 
 typedef enum sx126x_cmd_status {
   SX126X_CMD_STATUS_DATA_READY = 0x2,
@@ -28,6 +34,8 @@ typedef enum sx126x_cmd_opcode {
   SX126X_CMD_OPCODE_SET_TX = 0x83,
   SX126X_CMD_OPCODE_CLEAR_IRQ_PARAMS = 0x02,
 } sx126x_cmd_opcode_t;
+
+void sx126x_board_init(sx126x_board_config_t* config);
 
 sx126x_cmd_status_t sx126x_write_command(uint8_t* cmd, size_t cmd_size,
                                          uint8_t* data, size_t data_size);
