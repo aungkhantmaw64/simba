@@ -51,6 +51,15 @@ void sx126x_set_pa_config(sx126x_pa_config_t* config) {
   sx126x_write_command(cmd, sizeof(cmd), NULL, 0);
 }
 
+void sx126x_set_tx_params(sx126x_tx_params_t* params) {
+  uint8_t cmd[3] = {
+      [0] = SX126X_CMD_OPCODE_SET_TX_PARAMS,
+      [1] = (uint8_t)(params->power & 0xFF),
+      [2] = params->ramp_time,
+  };
+  sx126x_write_command(cmd, sizeof(cmd), NULL, 0);
+}
+
 void sx126x_set_buffer_base_address(sx126x_buffer_base_addr_t* addr) {
   uint8_t cmd[3] = {
       [0] = SX126X_CMD_OPCODE_SET_BUFFER_BASE_ADDRESS,

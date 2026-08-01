@@ -118,6 +118,21 @@ void test_sx126x_set_pa_config(void) {
   TEST_ASSERT_EQUAL(5, sx126x_write_command_fake.arg1_val);
 }
 
+void test_sx126x_set_tx_params(void) {
+  // ARRANGE
+  sx126x_tx_params_t tx_params = {
+      .power = 14,  // +14 dBm (0x0E)
+      .ramp_time = SX126X_SET_RAMP_40U,
+  };
+  // ACT
+  sx126x_set_tx_params(&tx_params);
+  TEST_ASSERT_EQUAL(1, sx126x_write_command_fake.call_count);
+  TEST_ASSERT_EQUAL_HEX8(0x8E, g_capture_command[0]);
+  TEST_ASSERT_EQUAL_HEX8(0x0E, g_capture_command[1]);
+  TEST_ASSERT_EQUAL_HEX8(0x02, g_capture_command[2]);
+  TEST_ASSERT_EQUAL(3, sx126x_write_command_fake.arg1_val);
+}
+
 void test_sx126x_set_buffer_base_address(void) {
   // ARANGE
   sx126x_buffer_base_addr_t addr = {
