@@ -27,7 +27,14 @@ typedef struct sx126x_buffer_base_addr {
 } sx126x_buffer_base_addr_t;
 
 typedef enum sx126x_ramp_time {
-  SX126X_SET_RAMP_40U = 0x02,
+  SX126X_SET_RAMP_10U = 0x00,    // 10 us
+  SX126X_SET_RAMP_20U = 0x01,    // 20 us
+  SX126X_SET_RAMP_40U = 0x02,    // 40 us
+  SX126X_SET_RAMP_80U = 0x03,    // 80 us
+  SX126X_SET_RAMP_200U = 0x04,   // 200 us
+  SX126X_SET_RAMP_800U = 0x05,   // 800 us
+  SX126X_SET_RAMP_1700U = 0x06,  // 1700 us
+  SX126X_SET_RAMP_3400U = 0x07,  // 3400 us
 } sx126x_ramp_time_t;
 
 typedef struct sx126x_tx_params {
